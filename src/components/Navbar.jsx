@@ -10,7 +10,7 @@ const Navbar = () => {
     <nav className="w-full">
       <div className="flex justify-between items-center">
         {/* Logo/Brand placeholder */}
-        <div className="text-2xl font-bold text-primary">NewsPortal</div>
+        <div className="text-2xl font-bold text-primary">Dragon News</div>
 
         {/* Desktop Nav */}
         <div className="hidden md:flex gap-6 text-accent text-lg">

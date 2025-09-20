@@ -2,16 +2,7 @@ import { FaRegEye, FaStar } from "react-icons/fa";
 import { BsBookmark, BsShare } from "react-icons/bs";
 
 const NewsCard = ({ news }) => {
-  const {
-    title,
-    rating,
-    total_view,
-    author,
-    thumbnail_url,
-    details,
-    tags,
-    category_id,
-  } = news;
+  const { title, rating, total_view, author, thumbnail_url, details } = news;
 
   return (
     <div className="card bg-base-100 shadow-md  rounded-xl overflow-hidden">

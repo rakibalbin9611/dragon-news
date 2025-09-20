@@ -8,8 +8,8 @@ const Qzone = () => {
       <h2 className="text-xl font-semibold text-accent">Q-Zone</h2>
       <div className="space-y-5 grid grid-cols-1">
         <img src={swimming} alt="" />
-        <img src={swimming} alt="" />
-        <img src={swimming} alt="" />
+        <img src={classroom} alt="" />
+        <img src={play} alt="" />
       </div>
     </div>
   );
