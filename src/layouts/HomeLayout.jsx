@@ -23,7 +23,7 @@ const HomeLayout = () => {
       {/* Main section */}
       <main className="w-11/12 mx-auto my-10 grid grid-cols-1 md:grid-cols-12 gap-5">
         {/* Left Sidebar → hidden on small, visible on large */}
-        <aside className="hidden lg:block lg:col-span-3">
+        <aside className="hidden lg:block lg:col-span-3 top-0 h-fit sticky">
           <LeftAside />
         </aside>
 
@@ -33,7 +33,7 @@ const HomeLayout = () => {
         </section>
 
         {/* Right Sidebar → visible from md onwards */}
-        <aside className="hidden md:block md:col-span-4 lg:col-span-3">
+        <aside className="hidden md:block md:col-span-4 lg:col-span-3 top-0 h-fit sticky">
           <RightAside />
         </aside>
       </main>

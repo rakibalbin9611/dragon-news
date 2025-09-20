@@ -10,3 +10,33 @@ Currently, two official plugins are available:
 ## Expanding the ESLint configuration
 
 If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+
+# 📰 Dragon News
+
+Dragon News is a modern online news portal built with React, TailwindCSS, and DaisyUI.  
+It delivers the latest news articles with category-based filtering, a clean user interface, and smooth navigation.  
+Firebase will be integrated for authentication and secure user management.
+
+---
+
+## 📌 Features
+
+- [x] Responsive UI built with React, TailwindCSS, and DaisyUI
+- [x] Category-based news filtering
+- [x] Dynamic routing with React Router
+- [ ] Firebase authentication (Login, Register, Google Sign-in)
+- [ ] Personalized user dashboard (planned)
+- [ ] Bookmark & save favorite news articles (planned)
+- [ ] Dark mode support (planned)
+
+---
+
+## 🛠️ Tech Stack
+
+- **Frontend:** React, React Router, Context API/Redux (if used)
+- **Styling:** TailwindCSS, DaisyUI
+- **Other Packages:** (list other React libraries/packages you are using)
+
+---
+
+## 📂 Folder Structure (Optional)
