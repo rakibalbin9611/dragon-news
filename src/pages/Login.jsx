@@ -1,6 +1,30 @@
-import { Link } from "react-router-dom";
+import { use } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { AuthContext } from "../provider/AuthProvider";
 
 const Login = () => {
+  const { loginUser, setUser } = use(AuthContext);
+  const navigate = useNavigate();
+  const handleLogin = (e) => {
+    e.preventDefault(); // stop page reload
+    const form = e.target;
+    const email = form.email.value;
+    const password = form.password.value;
+
+    // console.log({ email, password });
+    loginUser(email, password)
+      .then((res) => {
+        const user = res.user;
+        console.log(user);
+        alert("You are logged in successfuly.");
+        setUser(user);
+        navigate("/");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-100">
       <div className="bg-white p-10 rounded-lg shadow-md w-full max-w-md">
@@ -11,40 +35,54 @@ const Login = () => {
 
         <hr className="mb-6" />
 
-        {/* Email */}
-        <div className="mb-4">
-          <label className="block text-sm font-medium mb-2" htmlFor="email">
-            Email address
-          </label>
-          <input
-            type="email"
-            id="email"
-            placeholder="Enter your email address"
-            className="w-full px-4 py-3 rounded-md bg-gray-100 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-400"
-          />
-        </div>
+        {/* FORM START */}
+        <form onSubmit={handleLogin}>
+          {/* Email */}
+          <div className="mb-4">
+            <label className="block text-sm font-medium mb-2" htmlFor="email">
+              Email address
+            </label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="Enter your email address"
+              className="w-full px-4 py-3 rounded-md bg-gray-100 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-400"
+              required
+            />
+          </div>
 
-        {/* Password */}
-        <div className="mb-6">
-          <label className="block text-sm font-medium mb-2" htmlFor="password">
-            Password
-          </label>
-          <input
-            type="password"
-            id="password"
-            placeholder="Enter your password"
-            className="w-full px-4 py-3 rounded-md bg-gray-100 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-400"
-          />
-        </div>
+          {/* Password */}
+          <div className="mb-6">
+            <label
+              className="block text-sm font-medium mb-2"
+              htmlFor="password"
+            >
+              Password
+            </label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              placeholder="Enter your password"
+              className="w-full px-4 py-3 rounded-md bg-gray-100 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-400"
+              required
+            />
+          </div>
 
-        {/* Login Button */}
-        <button className="w-full py-3 bg-gray-800 text-white rounded-md hover:bg-gray-900 transition">
-          Login
-        </button>
+          {/* Login Button */}
+          <button
+            type="submit"
+            className="w-full py-3 bg-gray-800 text-white rounded-md hover:bg-gray-900 transition"
+          >
+            Login
+          </button>
+        </form>
+        {/* FORM END */}
 
         {/* Register Link */}
         <p className="text-center text-sm mt-6">
-          Don’t Have An Account ?{" "}
+          Don’t Have An Account?{" "}
           <Link to={"/auth/register"} className="text-red-500 font-medium">
             Register
           </Link>

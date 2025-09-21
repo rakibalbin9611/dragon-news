@@ -1,16 +1,29 @@
-import { NavLink } from "react-router-dom";
-import { useState } from "react";
+import { Link, NavLink } from "react-router-dom";
+import { use, useState } from "react";
 import { FiMenu, FiX } from "react-icons/fi";
 import login from "../assets/user.png";
+import { AuthContext } from "../provider/AuthProvider";
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
+  const { user, logOut } = use(AuthContext);
+
+  const handleLogout = () => {
+    logOut()
+      .then(() => {
+        alert("You logged out successfully");
+      })
+      .catch((error) => console.log(error));
+  };
 
   return (
     <nav className="w-full">
       <div className="flex justify-between items-center">
         {/* Logo/Brand placeholder */}
-        <div className="text-2xl font-bold text-primary">Dragon News</div>
+        <div className="text-xl font-semibold text-white bg-accent p-2">
+          Insight Today |{" "}
+          <span className="text-white">{user && user.email}</span>
+        </div>
 
         {/* Desktop Nav */}
         <div className="hidden md:flex gap-6 text-accent text-lg">
@@ -21,7 +34,22 @@ const Navbar = () => {
 
         {/* Login */}
         <div className="flex items-center gap-4">
-          <button className="btn btn-primary hidden sm:block">Login</button>
+          {user ? (
+            <button
+              onClick={handleLogout}
+              className="btn btn-primary hidden sm:block"
+            >
+              LogOut
+            </button>
+          ) : (
+            <Link
+              to={"/auth/login"}
+              className="btn btn-primary hidden sm:block"
+            >
+              Login
+            </Link>
+          )}
+
           <img src={login} alt="user" className="w-10 h-10" />
 
           {/* Mobile Menu Toggle */}
@@ -46,7 +74,10 @@ const Navbar = () => {
           <NavLink to={"/career"} onClick={() => setOpen(false)}>
             Career
           </NavLink>
-          <button className="btn btn-primary w-32">Login</button>
+          {/* login */}
+          <Link to={"/auth/login"} className="btn btn-primary w-32">
+            Login
+          </Link>
         </div>
       )}
     </nav>
