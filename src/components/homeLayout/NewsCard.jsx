@@ -1,8 +1,10 @@
 import { FaRegEye, FaStar } from "react-icons/fa";
 import { BsBookmark, BsShare } from "react-icons/bs";
+import { Link } from "react-router-dom";
 
 const NewsCard = ({ news }) => {
-  const { title, rating, total_view, author, thumbnail_url, details } = news;
+  const { id, title, rating, total_view, author, thumbnail_url, details } =
+    news;
 
   return (
     <div className="card bg-base-100 shadow-md  rounded-xl overflow-hidden">
@@ -45,10 +47,13 @@ const NewsCard = ({ news }) => {
       <div className="px-5 text-sm text-gray-600">
         <p>
           {details.length > 200 ? details.slice(0, 200) + "..." : details}
-          <span className="text-primary cursor-pointer font-medium">
+          <Link
+            to={`/news-details/${id}`}
+            className="text-primary cursor-pointer font-medium"
+          >
             {" "}
             Read More
-          </span>
+          </Link>
         </p>
       </div>
 
