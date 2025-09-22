@@ -1,27 +1,50 @@
-import { use } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useState, use } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../provider/AuthProvider";
 
 const Login = () => {
+  const location = useLocation();
   const { loginUser, setUser } = use(AuthContext);
   const navigate = useNavigate();
+
+  // state for error messages
+  const [error, setError] = useState("");
+
   const handleLogin = (e) => {
     e.preventDefault(); // stop page reload
-    const form = e.target;
-    const email = form.email.value;
-    const password = form.password.value;
+    setError(""); // reset error
 
-    // console.log({ email, password });
+    const form = e.target;
+    const email = form.email.value.trim();
+    const password = form.password.value.trim();
+
+    // validation
+    if (!email) {
+      setError("Email is required");
+      return;
+    }
+    if (!/\S+@\S+\.\S+/.test(email)) {
+      setError("Please enter a valid email address");
+      return;
+    }
+    if (!password) {
+      setError("Password is required");
+      return;
+    }
+    if (password.length < 6) {
+      setError("Password must be at least 6 characters long");
+      return;
+    }
+
+    // Firebase login
     loginUser(email, password)
       .then((res) => {
         const user = res.user;
-        console.log(user);
-        alert("You are logged in successfuly.");
         setUser(user);
-        navigate("/");
+        navigate(location.state ? location.state : "/");
       })
-      .catch((error) => {
-        console.log(error);
+      .catch((err) => {
+        setError(err.message); // show firebase error
       });
   };
 
@@ -69,6 +92,11 @@ const Login = () => {
               required
             />
           </div>
+
+          {/* Error Message */}
+          {error && (
+            <p className="text-red-500 text-sm mb-4 text-center">{error}</p>
+          )}
 
           {/* Login Button */}
           <button
