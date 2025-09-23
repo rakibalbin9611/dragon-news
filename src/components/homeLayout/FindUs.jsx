@@ -2,7 +2,7 @@ import { FaFacebook, FaTwitter, FaInstagram } from "react-icons/fa";
 
 const FindUs = () => {
   return (
-    <div>
+    <div className="">
       <h2 className="font-semibold text-xl text-accent">Find Us On</h2>
       <ul className="menu bg-base-200 rounded-box w-56 mt-5">
         <li>

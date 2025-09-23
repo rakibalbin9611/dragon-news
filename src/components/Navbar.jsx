@@ -6,7 +6,7 @@ import { AuthContext } from "../provider/AuthProvider";
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
-  const { user, logOut } = use(AuthContext);
+  const { user, logOut, updateUser } = use(AuthContext);
 
   const handleLogout = () => {
     logOut()
@@ -21,7 +21,7 @@ const Navbar = () => {
       <div className="flex justify-between items-center">
         {/* Logo/Brand placeholder */}
         <div className="text-xl font-semibold text-white bg-accent p-2">
-          Insight Today |{" "}
+          {" "}
           <span className="text-white">{user && user.email}</span>
         </div>
 
@@ -49,8 +49,15 @@ const Navbar = () => {
               Login
             </Link>
           )}
-
-          <img src={login} alt="user" className="w-10 h-10" />
+          {user ? (
+            <img
+              src={user.photoURL}
+              alt={user.displayName || "user"}
+              className="w-10  rounded-full border"
+            />
+          ) : (
+            <img src={login} alt="user" className="w-10 h-10" />
+          )}
 
           {/* Mobile Menu Toggle */}
           <button

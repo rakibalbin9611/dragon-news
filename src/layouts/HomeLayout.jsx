@@ -1,11 +1,13 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, useNavigation } from "react-router-dom";
 import Header from "../components/Header";
 import LatestNews from "../components/LatestNews";
 import Navbar from "../components/Navbar";
 import LeftAside from "../components/homeLayout/LeftAside";
 import RightAside from "../components/homeLayout/RightAside";
+import Loading from "../pages/Loading";
 
 const HomeLayout = () => {
+  const { state } = useNavigation();
   return (
     <div>
       {/* Header */}
@@ -29,10 +31,10 @@ const HomeLayout = () => {
 
         {/* Main Content → full width on mobile, half on desktop */}
         <section className="col-span-1 md:col-span-8 lg:col-span-6">
-          <Outlet />
+          {state == "loading" ? <Loading></Loading> : <Outlet />}
         </section>
 
-        {/* Right Sidebar → visible from md onwards */}
+        {/* Right Sidebar */}
         <aside className="hidden md:block md:col-span-4 lg:col-span-3 top-0 h-fit sticky">
           <RightAside />
         </aside>

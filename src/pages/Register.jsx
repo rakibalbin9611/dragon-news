@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../provider/AuthProvider";
 
 const Register = () => {
-  const { createUser, setUser } = use(AuthContext);
+  const { createUser, setUser, updateUser } = use(AuthContext);
   const navigate = useNavigate();
 
   // controlled form state
@@ -113,7 +113,14 @@ const Register = () => {
     createUser(form.email, form.password)
       .then((res) => {
         const user = res.user;
-        setUser(user);
+        updateUser({ displayName: name, photoURL: photo })
+          .then(() => {
+            setUser(...user, { displayName: name, photoURL: photo });
+          })
+          .catch((error) => {
+            console.log(error);
+            setUser(user);
+          });
         navigate("/");
       })
       .catch((error) => {
