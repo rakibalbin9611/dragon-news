@@ -15,7 +15,7 @@ const NewsDetailCard = ({ singleNews }) => {
   } = singleNews;
 
   return (
-    <div className="bg-white rounded-lg shadow-md overflow-hidden">
+    <div className="bg-white rounded-lg shadow-md overflow-hidden p-5">
       {/* Image */}
       <img
         src={image_url}

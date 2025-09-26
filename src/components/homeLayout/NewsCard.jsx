@@ -7,7 +7,7 @@ const NewsCard = ({ news }) => {
     news;
 
   return (
-    <div className="card bg-base-100 shadow-md  rounded-xl overflow-hidden">
+    <div className="card bg-base-100 shadow-md   rounded-xl overflow-hidden">
       {/* Author Section */}
       <div className="flex justify-between items-center px-5 py-3 bg-base-200">
         <div className="flex items-center gap-3">

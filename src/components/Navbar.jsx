@@ -20,7 +20,7 @@ const Navbar = () => {
     <nav className="w-full">
       <div className="flex justify-between items-center">
         {/* Logo/Brand placeholder */}
-        <div className="text-xl font-semibold text-white bg-accent p-2">
+        <div className="text-xl font-semibold text-white  p-2">
           {" "}
           <span className="text-white">{user && user.email}</span>
         </div>

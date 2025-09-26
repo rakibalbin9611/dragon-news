@@ -28,15 +28,18 @@ const AuthProvider = ({ children }) => {
     setLoading(true);
     return signOut(auth);
   };
+
   //login user
   const loginUser = (email, password) => {
     setLoading(true);
     return signInWithEmailAndPassword(auth, email, password);
   };
+
   // update profile
   const updateUser = (updateData) => {
     return updateProfile(auth.currentUser, updateData);
   };
+
   // auth observer
   useEffect(() => {
     const unsubcribe = onAuthStateChanged(auth, (currentUser) => {
