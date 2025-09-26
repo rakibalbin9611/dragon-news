@@ -1,13 +1,27 @@
-import { FaGithub } from "react-icons/fa";
-import { FcGoogle } from "react-icons/fc";
+import { AuthContext } from "../../provider/AuthProvider";
+import { use } from "react";
 
 const SocialLogin = () => {
+  const { signInWithGoogle } = use(AuthContext);
+  const handleGoogleSignIn = () => {
+    signInWithGoogle()
+      .then((result) => {
+        const loggedInUser = result.user;
+        console.log(loggedInUser);
+      })
+      .catch((error) => {
+        console.log("error", error.message);
+      });
+  };
   return (
     <div>
       <h2 className="font-bold text-xl">Login with</h2>
       <div className="flex flex-col gap-3 mt-5 space-y-2">
         {/* Google */}
-        <button className="btn bg-white text-black border-[#e5e5e5]">
+        <button
+          onClick={handleGoogleSignIn}
+          className="btn bg-white text-black border-[#e5e5e5]"
+        >
           <svg
             aria-label="Google logo"
             width="16"

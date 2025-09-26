@@ -42,12 +42,9 @@ const Navbar = () => {
               LogOut
             </button>
           ) : (
-            <Link
-              to={"/auth/login"}
-              className="btn btn-primary hidden sm:block"
-            >
-              Login
-            </Link>
+            <button className="btn btn-primary hidden sm:block">
+              <Link to={"/auth/login"}>Login</Link>
+            </button>
           )}
           {user ? (
             <img

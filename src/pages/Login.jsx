@@ -1,15 +1,14 @@
 import { useState, use } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../provider/AuthProvider";
-// import { getAuth, sendPasswordResetEmail } from "firebase/auth";
-import app from "../firebase/firebase.config";
+import { getAuth, sendPasswordResetEmail } from "firebase/auth";
 
 const Login = () => {
   const location = useLocation();
   const { loginUser, setUser } = use(AuthContext);
   const navigate = useNavigate();
 
-  // const auth = getAuth(app); //
+  const auth = getAuth();
 
   // state for error & success
   const [error, setError] = useState("");
@@ -62,25 +61,26 @@ const Login = () => {
       });
   };
 
-  // //  Forget Password
-  // const handleForgetPassword = () => {
-  //   const email = document.getElementById("email").value.trim();
-  //   setError("");
-  //   setMessage("");
+  //  Forget Password
+  const handleForgetPassword = () => {
+    const email = document.getElementById("email").value.trim();
+    console.log(email);
+    setError("");
+    setMessage("");
 
-  //   if (!email) {
-  //     setError("Please enter your email first");
-  //     return;
-  //   }
+    if (!email) {
+      setError("Please enter your email first");
+      return;
+    }
 
-  //   sendPasswordResetEmail(auth, email)
-  //     .then(() => {
-  //       setMessage("Password reset email sent! Check your inbox.");
-  //     })
-  //     .catch((err) => {
-  //       setError(err.message);
-  //     });
-  // };
+    sendPasswordResetEmail(auth, email)
+      .then(() => {
+        setMessage("Password reset email sent! Check your inbox.");
+      })
+      .catch((err) => {
+        setError(err.message);
+      });
+  };
 
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-100">
@@ -129,7 +129,7 @@ const Login = () => {
 
           {/* Forget Password Link */}
           <p
-            // onClick={handleForgetPassword}
+            onClick={handleForgetPassword}
             className="text-sm text-blue-500 cursor-pointer text-right mb-6"
           >
             Forgot Password?
