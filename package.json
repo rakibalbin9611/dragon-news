@@ -13,6 +13,7 @@
     "@tailwindcss/vite": "^4.1.13",
     "dayjs": "^1.11.18",
     "firebase": "^12.3.0",
+    "framer-motion": "^12.23.22",
     "localforage": "^1.10.0",
     "match-sorter": "^8.1.0",
     "react": "^19.1.1",
